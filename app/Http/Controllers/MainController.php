@@ -42,7 +42,9 @@ class MainController extends Controller
         // $this->showData($results);
 
         // // buscar um produto pelo seu ID
-        $results = Product::find(10)->toArray();
+        // $results = Product::find(10)->toArray();
+        // $this->showData($results);
+
         $this->showData($results);
     }
 
