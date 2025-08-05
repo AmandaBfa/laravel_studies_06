@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class MainController extends Controller
 {
@@ -87,44 +88,81 @@ class MainController extends Controller
 
         // ------------------------------------------------------------------------
 
-        $product = Product::find(10); // busca o produto com ID 10
-        echo " 1. Nome do produto: " . $product->product_name . "<br>";
-        echo "<hr>";
+        // $product = Product::find(10); // busca o produto com ID 10
+        // echo " 1. Nome do produto: " . $product->product_name . "<br>";
+        // echo "<hr>";
 
-        $product = Product::where('price', '>=', 70)->first();
-        echo " 2. " . $product->product_name . ' tem um preço de ' . $product->price . '<br>';
-        echo "<hr>";
+        // $product = Product::where('price', '>=', 70)->first();
+        // echo " 2. " . $product->product_name . ' tem um preço de ' . $product->price . '<br>';
+        // echo "<hr>";
 
-        $product = Product::firstWhere('price', '>=', 60);
-        echo " 3. " . $product->product_name . ' tem um preço de ' . $product->price . '<br>';
-        echo "<hr>";
+        // $product = Product::firstWhere('price', '>=', 60);
+        // echo " 3. " . $product->product_name . ' tem um preço de ' . $product->price . '<br>';
+        // echo "<hr>";
 
-        $product = Product::findOr(100, function () {
-            echo " 4. Produto não encontrado!<br>";
-        });
-        if ($product) {
-            echo " 4. " . $product->product_name . ' tem um preço de ' . $product->price . '<br>';
-        }
-        echo "<hr>";
+        // $product = Product::findOr(100, function () {
+        //     echo " 4. Produto não encontrado!<br>";
+        // });
+        // if ($product) {
+        //     echo " 4. " . $product->product_name . ' tem um preço de ' . $product->price . '<br>';
+        // }
+        // echo "<hr>";
 
-        $product = Product::findOrFail(20);
-        echo " 5. " . $product->product_name . ' tem um preço de ' . $product->price . '<br>';
-        echo "<hr>";
+        // $product = Product::findOrFail(20);
+        // echo " 5. " . $product->product_name . ' tem um preço de ' . $product->price . '<br>';
+        // echo "<hr>";
 
-        $total_products = Product::count();
-        $produc_max_price = Product::max('price');
-        $product_min_price = Product::min('price');
-        $product_avg_price = Product::avg('price');
-        $product_sum_price = Product::sum('price');
+        // $total_products = Product::count();
+        // $produc_max_price = Product::max('price');
+        // $product_min_price = Product::min('price');
+        // $product_avg_price = Product::avg('price');
+        // $product_sum_price = Product::sum('price');
 
-        $results = [
-            'total_products' => $total_products,
-            'produc_max_price' => $produc_max_price,
-            'product_min_price' => $product_min_price,
-            'product_avg_price' => $product_avg_price,
-            'product_sum_price' => $product_sum_price,
-        ];
-        $this->showData($results);
+        // $results = [
+        //     'total_products' => $total_products,
+        //     'produc_max_price' => $produc_max_price,
+        //     'product_min_price' => $product_min_price,
+        //     'product_avg_price' => $product_avg_price,
+        //     'product_sum_price' => $product_sum_price,
+        // ];
+        // $this->showData($results);
+
+
+        // ------------------------------------------------------------------------
+
+        // inserir um novo produto no banco de dados, na table products
+        // $new_product = new Product();
+        // $new_product->product_name = 'Novo Produto';
+        // $new_product->price = 50;
+        // $new_product->save(); // insere o novo produto no banco de dados  
+        // INSERT INTRO products (product_name, price) VALUES ('Novo Produto', 50);
+
+        // Product::create([
+        //     'product_name' => 'Novo Produto 2',
+        //     'price' => 60
+        // ]); // insere o novo produto no banco de dados
+
+        Product::insert([
+            [
+                'product_name' => 'Produto 4',
+                'price' => 40,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'product_name' => 'Produto 5',
+                'price' => 50,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'product_name' => 'Produto 6',
+                'price' => 60,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]
+
+        ]);
     }
 
     private function showData($data)
