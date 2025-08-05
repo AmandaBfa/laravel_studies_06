@@ -42,8 +42,44 @@ class MainController extends Controller
         // $this->showData($results);
 
         // // buscar um produto pelo seu ID
-        $results = Product::find(10)->toArray();
-        $this->showData($results);
+        // $results = Product::find(10)->toArray();
+        // $this->showData($results);
+
+
+        // ------------------------------------------------------------------------
+
+        // // usar a cláusula where para filtrar os produtos
+        // $results = Product::where('price', '>=', 70)->get()->toArray();
+
+        // // buscar apenas o primerio resultado
+        // $results = Product::where('price', '>=', 70)->first()->toArray();
+
+        // // buscar apenas o primerio elemento se ele existir, caso contrário retornar um array vazio
+        // $results = Product::where('price', '>=', 190)
+        //     ->firstOr(function () {
+        //         return [];
+        //     });
+
+        // // buscar apenas o primerio elemento se ele existir, caso contrário retornar um array vazio
+        // $results = Product::where('price', '>=', 190)
+        //     ->firstOr(function () {
+        //         return [];
+        //     });
+        // $this->showData($results);
+
+        $product = Product::find(10); // busca o produto com ID 10
+        echo "Nome do produto: " . $product->product_name . "<br>";
+        echo "Preço do produto: " . $product->price . "<br>";
+
+        echo "<br>";
+
+        $product->price = 200; // define um novo preço apenas no código, não no banco de dados
+        echo "Novo preço do produto: " . $product->price . "<br>";
+
+        echo "<br>";
+
+        $product->refresh(); // volta ao preço original do produto no banco de dados
+        echo "Preço origianl do produto: " . $product->price . "<br>";
     }
 
     private function showData($data)
