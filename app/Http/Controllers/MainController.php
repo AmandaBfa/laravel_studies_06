@@ -184,6 +184,37 @@ class MainController extends Controller
         //     ['product_name' => 'xarope'],
         //     ['price' => 25]
         // );
+
+
+        // -------------------------------------------------------------------------
+        // ------------------ DELETEs - hard delete e soft delete ------------------
+
+        /* -------------------------------------------------------------------------
+                                    HARD DELETE: 
+        ------------------------------------------------------------------------- */
+
+        // $product = Product::find(10); // SELLECT * FROM products WHERE id:10;
+        // $product->delete(); // DELETE FROM products WHERE id:10;
+
+        // // se quiser limpar TUDO da tabela
+        // metodo muito perigoso
+        // Product::truncate(); // DELETE FROM products; (limpa a tabela, mas não deleta o arquivo de migração)  
+
+        // Product::destroy(1); // DELETE FROM products WHERE id:1;
+        // Product::destroy(1, 3, 5); // DELETE FROM products WHERE id IN (1, 3, 5);
+        // Product::destroy([2, 4, 6]); // DELETE FROM products WHERE id IN (2, 4, 6);
+
+        // Product::where('price', '>=', 70)->delete(); // DELETE FROM products WHERE price >= 70;
+
+        /* -------------------------------------------------------------------------
+                                    SOFT DELETE: 
+        ------------------------------------------------------------------------- */
+        // $product = Product::find(25);
+        // $product->delete();
+
+        // recuperar produto com soft delete
+        // $product = Product::withTrashed()->find(25);
+        // $product->restore(); // restaura o produto que foi deletado com soft delete
     }
 
     private function showData($data)
