@@ -67,19 +67,64 @@ class MainController extends Controller
         //     });
         // $this->showData($results);
 
+
+        // ------------------------------------------------------------------------
+
+        // $product = Product::find(10); // busca o produto com ID 10
+        // echo "Nome do produto: " . $product->product_name . "<br>";
+        // echo "Preço do produto: " . $product->price . "<br>";
+
+        // echo "<br>";
+
+        // $product->price = 200; // define um novo preço apenas no código, não no banco de dados
+        // echo "Novo preço do produto: " . $product->price . "<br>";
+
+        // echo "<br>";
+
+        // $product->refresh(); // volta ao preço original do produto no banco de dados
+        // echo "Preço origianl do produto: " . $product->price . "<br>";
+
+
+        // ------------------------------------------------------------------------
+
         $product = Product::find(10); // busca o produto com ID 10
-        echo "Nome do produto: " . $product->product_name . "<br>";
-        echo "Preço do produto: " . $product->price . "<br>";
+        echo " 1. Nome do produto: " . $product->product_name . "<br>";
+        echo "<hr>";
 
-        echo "<br>";
+        $product = Product::where('price', '>=', 70)->first();
+        echo " 2. " . $product->product_name . ' tem um preço de ' . $product->price . '<br>';
+        echo "<hr>";
 
-        $product->price = 200; // define um novo preço apenas no código, não no banco de dados
-        echo "Novo preço do produto: " . $product->price . "<br>";
+        $product = Product::firstWhere('price', '>=', 60);
+        echo " 3. " . $product->product_name . ' tem um preço de ' . $product->price . '<br>';
+        echo "<hr>";
 
-        echo "<br>";
+        $product = Product::findOr(100, function () {
+            echo " 4. Produto não encontrado!<br>";
+        });
+        if ($product) {
+            echo " 4. " . $product->product_name . ' tem um preço de ' . $product->price . '<br>';
+        }
+        echo "<hr>";
 
-        $product->refresh(); // volta ao preço original do produto no banco de dados
-        echo "Preço origianl do produto: " . $product->price . "<br>";
+        $product = Product::findOrFail(20);
+        echo " 5. " . $product->product_name . ' tem um preço de ' . $product->price . '<br>';
+        echo "<hr>";
+
+        $total_products = Product::count();
+        $produc_max_price = Product::max('price');
+        $product_min_price = Product::min('price');
+        $product_avg_price = Product::avg('price');
+        $product_sum_price = Product::sum('price');
+
+        $results = [
+            'total_products' => $total_products,
+            'produc_max_price' => $produc_max_price,
+            'product_min_price' => $product_min_price,
+            'product_avg_price' => $product_avg_price,
+            'product_sum_price' => $product_sum_price,
+        ];
+        $this->showData($results);
     }
 
     private function showData($data)
