@@ -142,27 +142,48 @@ class MainController extends Controller
         //     'price' => 60
         // ]); // insere o novo produto no banco de dados
 
-        Product::insert([
-            [
-                'product_name' => 'Produto 4',
-                'price' => 40,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'product_name' => 'Produto 5',
-                'price' => 50,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'product_name' => 'Produto 6',
-                'price' => 60,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]
+        // Product::insert([
+        //     [
+        //         'product_name' => 'Produto 4',
+        //         'price' => 40,
+        //         'created_at' => Carbon::now(),
+        //         'updated_at' => Carbon::now()
+        //     ],
+        //     [
+        //         'product_name' => 'Produto 5',
+        //         'price' => 50,
+        //         'created_at' => Carbon::now(),
+        //         'updated_at' => Carbon::now()
+        //     ],
+        //     [
+        //         'product_name' => 'Produto 6',
+        //         'price' => 60,
+        //         'created_at' => Carbon::now(),
+        //         'updated_at' => Carbon::now()
+        //     ]
+        // ]);
 
-        ]);
+
+        // ------------------------------------------------------------------------
+
+        // // UPDATE
+        // $product = Product::find(10); // SELLECT * FROM products WHERE id = 10;
+        // $product->product_name = 'Produto Alterado';
+        // $product->price = 10;
+        // $product->save(); // UPDATE products SET product_name = 'Produto Alterado', price = 10 WHERE id = 10;
+
+
+        // // UPDATE - massivo
+        // Product::where('price', '<=', 10)
+        //     ->update([
+        //         'price' => 250
+        //     ]); // exemplo: UPDATE products SET price = 100, product_name = 'Nome Alterado' WHERE id <= 10;
+
+        // // atualizar (se existir) ou criar
+        // Product::updateOrCreate(
+        //     ['product_name' => 'xarope'],
+        //     ['price' => 25]
+        // );
     }
 
     private function showData($data)
