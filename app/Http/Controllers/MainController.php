@@ -116,6 +116,30 @@ class MainController extends Controller
         // echo "<hr>";
     }
 
+    public function SameResults()
+    {
+        // // vamos buscar os mesmos resultados, mas sem usar as relações, vamos buscar um cliente e os seus telefones
+        // // $client1 = Client::find(1);
+        // $phones = Phone::where('client_id', $client1->id)->get(); // pega todos os telefones do cliente
+        // echo "Cliente: " . $client1->client_name . "<br>";
+        // echo "Telefone(s): <br>";
+        // foreach ($phones as $phone) {
+        //     echo " - " . $phone->phone_number . "<br>";
+        // }
+        // echo "<hr>";
+
+        // // vamos buscar todos os produtos que um cliente comprou
+        // $client2 = Client::find(1);
+        // $products = Product::join('orders', 'products.id', '=', 'orders.product_id')
+        //     ->where('orders.client_id', $client2->id)
+        //     ->get(); // pega todos os produtos do cliente
+        // echo "Cliente: " . $client2->client_name . "<br>";
+        // echo "Produtos comprados: <br>";
+        // foreach ($products as $product) {
+        //     echo " - " . $product->product_name . " - " . $product->price .  "<br>";
+        // }
+    }
+
     public function RunningQueries()
     {
         // // vamos buscar um cliente e os seus telefones, mas so queremos os telefones que começa por 8
