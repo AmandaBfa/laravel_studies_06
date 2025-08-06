@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
-    protected $fillable = ['product_name', 'price'];
-
-    use SoftDeletes;
+    public function clients(): BelongsToMany
+    {
+        return $this->belongsToMany(Client::class, 'orders', 'product_id', 'client_id');
+    }
 }
