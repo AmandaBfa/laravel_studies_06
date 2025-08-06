@@ -229,13 +229,47 @@ class MainController extends Controller
 
         //--------------------------------------------------------------------------------------------------------------------------
 
-        // MAKEHIDDEN
-        $clients = Client::take(15)->get();
-        $clients->makeHidden(['id', 'created_at', 'updated_at', 'deleted_at']); // esconde os campos email, created_at e updated_at de cada cliente
-        $this->showData($clients->toArray());
+        // // MAKEHIDDEN
+        // $clients = Client::take(15)->get();
+        // $clients->makeHidden(['id', 'created_at', 'updated_at', 'deleted_at']); // esconde os campos email, created_at e updated_at de cada cliente
+        // $this->showData($clients->toArray());
 
         //--------------------------------------------------------------------------------------------------------------------------
     }
+
+    public function Serialization()
+    {
+        // // SERIALIZATION
+        // $clients = Client::take(10)->get();
+        // $clientes = $clients->toArray(); // converte a coleção de clientes em um array
+        // $this->showData($clientes);
+
+        // $clients = Client::take(10)->get()->toArray();
+        // $this->showData($clients);
+
+        // // converte a coleção de clientes em um array de objetos
+        // $client = Client::find(100)->toArray(); // pega o cliente com ID 1 e converte em array
+        // $this->showData($client);
+
+        // $clients = Client::take(10)->get()->toJson(JSON_PRETTY_PRINT);
+        // echo "<pre>";
+        // echo $clients; // exibe o JSON
+
+
+        // // escondendo campos específicos
+        // $clients = Client::take(10)->get()->setHidden(['id', 'active', 'created_at', 'updated_at', 'deleted_at'])->toJson(JSON_PRETTY_PRINT);
+        // echo "<pre>";
+        // echo $clients; // exibe o JSON com os campos ocultos
+
+        // // mostrando apenas campos específicos
+        // $clients = Client::take(10)->get()->setVisible(['client_name', 'email'])->toJson(JSON_PRETTY_PRINT);
+        // echo "<pre>";
+        // echo $clients; // exibe o JSON com os campos ocultos
+
+
+
+    }
+
 
     private function showData($data)
     {
