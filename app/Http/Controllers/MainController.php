@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Phone;
 
 class MainController extends Controller
 {
@@ -75,7 +76,22 @@ class MainController extends Controller
         // }
     }
 
+    public function BelongsTo()
+    {
+        // // neste método vamos pegar no telefone e descobrir a quem pertence
+        // $phone1 = Phone::find(10);
+        // $client = $phone1->client;
+        // echo "Telefone: " . $phone1->phone_number . "<br>";
+        // echo "Pertence ao cliente: " . $client->client_name . "<br>";
 
+        // // outra forma é usando o método with()
+        // $phone2 = Phone::with('client')->find(10);
+        // echo "<br>";
+        // echo "Telefone: " . $phone2->phone_number . "<br>";
+        // echo "Pertence ao cliente: " . $phone2->client->client_name . "<br>";
+
+
+    }
 
     private function showData($data)
     {
