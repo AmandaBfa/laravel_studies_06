@@ -176,6 +176,67 @@ class MainController extends Controller
         // echo "<hr>";
     }
 
+    public function Collections()
+    {
+        // $clients = Client::take(5)->get();
+        // foreach ($clients as $client) {
+        //     echo "Nome do cliente: " . $client->client_name . "<br>";
+        // }
+
+        //--------------------------------------------------------------------------------------------------------------------------
+
+        // // APPEND - adiciona um método a cada cliente
+        // $clients = Client::take(5)->get();
+        // $clients->each->append(['client_name_uppercase', 'email_domain']); // adiciona o método client_name_uppercase a cada cliente
+        // foreach ($clients as $client) {
+        //     $client->client_name_uppercase = strtoupper($client->client_name); // converte o nome do cliente para maiúsculas
+        //     $client->email_domain = explode("@", $client->email)[1]; // pega o domínio do email
+        // }
+        // foreach ($clients as $client) {
+        //     echo "Nome do cliente: " . $client->client_name . "<br>";
+        //     echo "Nome do cliente em maiúsculas: " . $client->client_name_uppercase . "<br>";
+        //     echo "Domínio do email: " . $client->email_domain . "<br>";
+        // }
+        // echo "<hr>";
+
+        //--------------------------------------------------------------------------------------------------------------------------
+
+        // // CONTAINS
+        // $clients = Client::take(5)->get();
+        // $result = $clients->contains('client_name', 'Susana Ines Borges'); // verifica se existe um cliente com o nome João
+        // var_dump($result);
+        // echo "<hr>";
+
+        //--------------------------------------------------------------------------------------------------------------------------
+
+        // // DIFF
+        // $clients1 = Client::take(5)->get();
+        // $clients2 = Client::take(3)->get();
+        // $result = $clients1->diff($clients2)->toArray(); // verifica a diferença entre os dois conjuntos de clientes
+        // echo "Diferença entre os dois conjuntos de clientes: <br>";
+        // $this->showData($result);
+        // echo "<hr>";
+
+        //--------------------------------------------------------------------------------------------------------------------------
+
+        // // INTERSECT
+        // $clients1 = Client::take(5)->get();
+        // $clients2 = Client::where('id', '>', 3)->take(5)->get();
+        // $results = $clients1->intersect($clients2)->toArray(); // verifica a interseção entre os dois conjuntos de clientes
+        // echo "Interseção entre os dois conjuntos de clientes: <br>";
+        // $this->showData($results);
+        // echo "<hr>";
+
+        //--------------------------------------------------------------------------------------------------------------------------
+
+        // MAKEHIDDEN
+        $clients = Client::take(15)->get();
+        $clients->makeHidden(['id', 'created_at', 'updated_at', 'deleted_at']); // esconde os campos email, created_at e updated_at de cada cliente
+        $this->showData($clients->toArray());
+
+        //--------------------------------------------------------------------------------------------------------------------------
+    }
+
     private function showData($data)
     {
         echo "<pre>";
